@@ -1,7 +1,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDownRight } from '@phosphor-icons/react';
-import { NeuralConstellation } from './ThreeVisuals';
 
 // Micro-interaction components defined in Hero scope or reused if moved to separate file
 // For now, inline simple versions if needed or assume user wants to keep file clean.
@@ -105,9 +104,6 @@ export const Hero: React.FC = () => {
       ref={containerRef}
       className="relative pt-32 min-h-screen flex flex-col bg-white overflow-hidden"
     >
-      {/* 3D Visual Background */}
-      <NeuralConstellation />
-
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 h-full flex-grow pb-12 relative z-10">
         
         {/* Left: Typography */}

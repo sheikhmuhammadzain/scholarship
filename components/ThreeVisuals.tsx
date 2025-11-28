@@ -17,6 +17,8 @@ export const NeuralConstellation: React.FC = () => {
     const dpr = window.devicePixelRatio || 1;
     
     const setSize = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
         canvas.width = width * dpr;
         canvas.height = height * dpr;
         ctx.scale(dpr, dpr);
@@ -27,151 +29,143 @@ export const NeuralConstellation: React.FC = () => {
 
     // Configuration
     const config = {
-        particleCount: 140,
+        particleCount: window.innerWidth < 768 ? 60 : 140, // Reduced count for mobile
         connectionDistance: 160,
         mouseInfluenceRadius: 300,
-        focalLength: 800,
-        depth: 1200
+        focalLength: 800, // Distance of the "camera"
+        depth: 1000, // How deep the scene goes
+        zSpeed: 2 // Speed of travel through Z-space
     };
 
     // State
     const mouse = { x: width * 0.75, y: height * 0.5 };
     const targetMouse = { x: width * 0.75, y: height * 0.5 };
-
+    
+    // Particle Class
     class Particle {
-      x: number;
-      y: number;
-      z: number;
-      vx: number;
-      vy: number;
-      vz: number;
-      color: string;
-      size: number;
-      phase: number;
-
-      constructor() {
-        this.x = (Math.random() - 0.5) * width * 1.5;
-        this.y = (Math.random() - 0.5) * height * 1.5;
-        this.z = Math.random() * config.depth;
+        x: number;
+        y: number;
+        z: number;
+        ox: number; // Original X
+        oy: number; // Original Y
+        size: number;
         
-        // Organic Drift Velocity
-        this.vx = (Math.random() - 0.5) * 0.2;
-        this.vy = (Math.random() - 0.5) * 0.2;
-        this.vz = (Math.random() - 0.5) * 0.5;
+        constructor() {
+            this.x = (Math.random() - 0.5) * width * 1.5; // Spread wide
+            this.y = (Math.random() - 0.5) * height * 1.5;
+            this.z = Math.random() * config.depth;
+            this.ox = this.x;
+            this.oy = this.y;
+            this.size = Math.random() * 2 + 1.5;
+        }
 
-        // Premium Palette
-        const colors = ['#0f172a', '#3b82f6', '#0ea5e9', '#64748b']; 
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.size = Math.random() * 2 + 1;
-        this.phase = Math.random() * Math.PI * 2;
-      }
+        update() {
+            // Move forward in Z space
+            this.z -= config.zSpeed;
 
-      update() {
-        this.phase += 0.03;
-        
-        // Flow Field movement
-        this.x += this.vx + Math.sin(this.phase * 0.5) * 0.2;
-        this.y += this.vy + Math.cos(this.phase * 0.5) * 0.2;
-        this.z -= 0.5; // Constant forward movement like a starfield
+            // Reset when passed camera
+            if (this.z <= 0) {
+                this.z = config.depth;
+                this.x = (Math.random() - 0.5) * width * 1.5;
+                this.y = (Math.random() - 0.5) * height * 1.5;
+                this.ox = this.x;
+                this.oy = this.y;
+            }
 
-        // Recycle particles
-        if (this.z < -config.focalLength + 100) this.z = config.depth;
-        
-        // Mouse Parallax / Repulsion
-        const dx = mouse.x - (width / 2);
-        const dy = mouse.y - (height / 2);
-        this.x -= dx * 0.0002 * (this.z / config.depth); 
-        this.y -= dy * 0.0002 * (this.z / config.depth);
-      }
+            // Mouse Influence (Parallax + Attraction)
+            const dx = mouse.x - width / 2;
+            const dy = mouse.y - height / 2;
+            
+            // Subtle parallax based on mouse position
+            this.x = this.ox + (dx * (config.depth - this.z) / config.depth) * 0.1;
+            this.y = this.oy + (dy * (config.depth - this.z) / config.depth) * 0.1;
+        }
 
-      draw(ctx: CanvasRenderingContext2D, centerX: number, centerY: number) {
-        // Perspective Projection
-        const scale = config.focalLength / (config.focalLength + this.z);
-        const x2d = (this.x * scale) + centerX;
-        const y2d = (this.y * scale) + centerY;
-
-        // Depth of Field Simulation
-        const alpha = Math.max(0, Math.min(1, (scale * scale * 0.8)));
-        const renderSize = this.size * scale;
-
-        // Draw Node
-        ctx.beginPath();
-        ctx.arc(x2d, y2d, renderSize, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = alpha;
-        ctx.fill();
-
-        return { x: x2d, y: y2d, z: this.z, scale, alpha, color: this.color };
-      }
+        getProjection() {
+            // 3D to 2D Projection Math
+            const scale = config.focalLength / (config.focalLength + this.z);
+            const x2d = this.x * scale + width / 2;
+            const y2d = this.y * scale + height / 2;
+            return { x: x2d, y: y2d, scale };
+        }
     }
 
-    // Initialize Swarm
+    // Initialize Particles
     const particles: Particle[] = [];
-    for(let i=0; i<config.particleCount; i++) {
+    for (let i = 0; i < config.particleCount; i++) {
         particles.push(new Particle());
     }
 
-    const animate = () => {
-        // Smooth Mouse Lerp
+    // Animation Loop
+    let animationFrameId: number;
+
+    const render = () => {
+        // Smooth Mouse Interpolation
         mouse.x += (targetMouse.x - mouse.x) * 0.05;
         mouse.y += (targetMouse.y - mouse.y) * 0.05;
 
         ctx.clearRect(0, 0, width, height);
-        const centerX = width / 2;
-        const centerY = height / 2;
 
-        // Update & Project
-        const projected = particles.map(p => {
+        // Update & Draw Particles
+        const projectedPoints: {x: number, y: number, z: number, p: Particle}[] = [];
+
+        particles.forEach(p => {
             p.update();
-            return p.draw(ctx, centerX, centerY);
+            const proj = p.getProjection();
+            
+            // Only draw if within viewport bounds (with padding)
+            if(proj.x > -50 && proj.x < width + 50 && proj.y > -50 && proj.y < height + 50) {
+                projectedPoints.push({ x: proj.x, y: proj.y, z: p.z, p: p });
+
+                // Draw Node
+                // Opacity based on depth (fades out as it gets deeper)
+                const alpha = 1 - (p.z / config.depth);
+                ctx.beginPath();
+                ctx.arc(proj.x, proj.y, p.size * proj.scale, 0, Math.PI * 2);
+                
+                // Color: Dark Slate Blue to pop on #F4F4F3
+                ctx.fillStyle = `rgba(30, 41, 59, ${alpha})`; 
+                ctx.fill();
+            }
         });
 
-        // Draw Synaptic Connections
-        ctx.lineWidth = 0.5;
-        for (let i = 0; i < projected.length; i++) {
-            const p1 = projected[i];
-            if (p1.alpha < 0.1) continue;
-
-            // Connect to nearest neighbors only
-            for (let j = i + 1; j < projected.length; j++) {
-                const p2 = projected[j];
-                if (p2.alpha < 0.1) continue;
-
+        // Draw Connections
+        for (let i = 0; i < projectedPoints.length; i++) {
+            const p1 = projectedPoints[i];
+            
+            // Optimization: Only check neighbors in array to reduce O(n^2) impact
+            // Since array is arbitrary, we check all, but loop count is low (140)
+            for (let j = i + 1; j < projectedPoints.length; j++) {
+                const p2 = projectedPoints[j];
+                
                 const dx = p1.x - p2.x;
                 const dy = p1.y - p2.y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                const maxDist = config.connectionDistance * p1.scale;
+                const dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist < maxDist) {
-                    // Calculate opacity based on distance and shared depth alpha
-                    const opacity = (1 - dist / maxDist) * Math.min(p1.alpha, p2.alpha) * 0.4;
+                if (dist < config.connectionDistance) {
+                    // Line opacity depends on distance AND average depth
+                    const distAlpha = 1 - (dist / config.connectionDistance);
+                    const depthAlpha = 1 - ((p1.z + p2.z) / 2 / config.depth);
                     
-                    if (opacity > 0.05) {
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        
-                        // Premium Gradient Line
-                        const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-                        gradient.addColorStop(0, p1.color);
-                        gradient.addColorStop(1, p2.color);
-                        
-                        ctx.strokeStyle = gradient;
-                        ctx.globalAlpha = opacity;
-                        ctx.stroke();
-                    }
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    
+                    // Color: Electric Blue connections
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${distAlpha * depthAlpha * 0.4})`;
+                    ctx.lineWidth = 1.5 * depthAlpha;
+                    ctx.stroke();
                 }
             }
         }
 
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(render);
     };
 
-    animate();
+    render();
 
+    // Event Listeners
     const handleResize = () => {
-        width = window.innerWidth;
-        height = window.innerHeight;
         setSize();
     };
 
@@ -186,13 +180,15 @@ export const NeuralConstellation: React.FC = () => {
     return () => {
         window.removeEventListener('resize', handleResize);
         window.removeEventListener('mousemove', handleMouseMove);
+        cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <canvas 
         ref={canvasRef} 
-        className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 mix-blend-multiply opacity-80"
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{ zIndex: 0 }}
     />
   );
 };

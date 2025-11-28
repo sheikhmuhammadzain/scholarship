@@ -116,7 +116,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen selection:bg-black selection:text-white flex flex-col cursor-none">
+    <div className="bg-[var(--background)] min-h-screen selection:bg-black selection:text-white flex flex-col cursor-none">
       <CustomCursor />
       
       {/* Navbar outside main content to ensure fixed positioning works correctly */}
