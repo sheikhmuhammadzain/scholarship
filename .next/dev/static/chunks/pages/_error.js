@@ -1,0 +1,15 @@
+__turbopack_load_page_chunks__("/_error", [
+  "static/chunks/e07fa_next_dist_compiled_f8d227ae._.js",
+  "static/chunks/e07fa_next_dist_shared_lib_165e76b1._.js",
+  "static/chunks/e07fa_next_dist_client_c2f33ea0._.js",
+  "static/chunks/e07fa_next_dist_bfb25200._.js",
+  "static/chunks/e07fa_next_error_6bba335b.js",
+  "static/chunks/[next]_entry_page-loader_ts_b781e84f._.js",
+  "static/chunks/0bc0c_react_2bb1aa56._.js",
+  "static/chunks/0d5b4_react-dom_cjs_react-dom_development_50e01e77.js",
+  "static/chunks/0d5b4_react-dom_69bb3987._.js",
+  "static/chunks/58806__pnpm_70306407._.js",
+  "static/chunks/[root-of-the-server]__5278dc46._.js",
+  "static/chunks/Desktop_qbit_scholarship-gemini_pages__error_2da965e7._.js",
+  "static/chunks/turbopack-Desktop_qbit_scholarship-gemini_pages__error_70a5b8d9._.js"
+])
