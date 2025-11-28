@@ -98,9 +98,9 @@ export const Workflow: React.FC = () => {
 
                     <div className="font-mono text-xs space-y-4 flex-grow">
                         <div className="text-slate-400 pb-4 border-b border-slate-200">
-                            > INITIALIZING SESSION... <br/>
-                            > CONNECTING TO GLOBAL DB... <br/>
-                            {isActive && <span className="text-green-600">> PIPELINE STARTED</span>}
+                            &gt; INITIALIZING SESSION... <br/>
+                            &gt; CONNECTING TO GLOBAL DB... <br/>
+                            {isActive && <span className="text-green-600">&gt; PIPELINE STARTED</span>}
                         </div>
                         
                         {workflowSteps.map((step, idx) => (
@@ -109,7 +109,7 @@ export const Workflow: React.FC = () => {
                                     <span className="text-slate-300">0{step.id}</span>
                                     <div>
                                         <span className={idx === currentStep && isActive ? 'text-blue-600' : 'text-slate-700'}>
-                                            > {step.label}
+                                            &gt; {step.label}
                                         </span>
                                         {idx === currentStep && isActive && (
                                             <div className="mt-1 text-slate-400 animate-pulse">
