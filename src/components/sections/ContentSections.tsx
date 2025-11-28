@@ -200,13 +200,13 @@ export const ExpertGuidance = () => {
                      <div className="absolute inset-0 bg-slate-800">
                         <img 
                             ref={imageRef}
-                            src="https://plus.unsplash.com/premium_photo-1669704098858-8cd103f4ac2e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FyYWh8ZW58MHx8MHx8fDA%3D" 
+                            src="https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                             alt="Consultant" 
                             className="w-full h-full object-cover opacity-60 mix-blend-overlay will-change-transform"
                         />
                      </div>
                      <div className="absolute bottom-0 left-0 p-8 w-full border-t border-white/10 bg-slate-900/50 backdrop-blur-sm z-20">
-                         <div className="text-white font-bold text-lg">Dr. Sarah Mitchell</div>
+                         <div className="text-white font-bold text-lg">Dr.Mitchell</div>
                          <div className="text-slate-400 text-sm uppercase tracking-wider mt-1">Lead Strategist</div>
                      </div>
                  </div>

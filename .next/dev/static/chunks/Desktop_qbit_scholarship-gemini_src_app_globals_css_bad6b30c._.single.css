@@ -639,6 +639,10 @@ body {
   height: 100vh;
 }
 
+.max-h-\[calc\(100\%-120px\)\] {
+  max-height: calc(100% - 120px);
+}
+
 .min-h-\[300px\] {
   min-height: 300px;
 }
@@ -1020,6 +1024,10 @@ body {
   overflow: visible;
 }
 
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
 .overflow-x-hidden {
   overflow-x: hidden;
 }
@@ -1030,10 +1038,6 @@ body {
 
 .whitespace-nowrap {
   white-space: nowrap;
-}
-
-.break-words {
-  overflow-wrap: break-word;
 }
 
 .rounded-2xl {
@@ -1373,11 +1377,6 @@ body {
 .py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
-}
-
-.py-16 {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
 }
 
 .py-2 {
@@ -2181,20 +2180,20 @@ body {
 }
 
 @media (min-width: 640px) {
+  .sm\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
   .sm\:col-span-2 {
     grid-column: span 2 / span 2;
   }
 
+  .sm\:mb-5 {
+    margin-bottom: 1.25rem;
+  }
+
   .sm\:mb-6 {
     margin-bottom: 1.5rem;
-  }
-
-  .sm\:mb-8 {
-    margin-bottom: 2rem;
-  }
-
-  .sm\:mt-10 {
-    margin-top: 2.5rem;
   }
 
   .sm\:grid-cols-2 {
@@ -2205,20 +2204,16 @@ body {
     flex-direction: row;
   }
 
-  .sm\:justify-end {
-    justify-content: flex-end;
-  }
-
-  .sm\:gap-10 {
-    gap: 2.5rem;
-  }
-
   .sm\:gap-4 {
     gap: 1rem;
   }
 
   .sm\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .sm\:gap-8 {
+    gap: 2rem;
   }
 
   .sm\:space-y-3 > :not([hidden]) ~ :not([hidden]) {
@@ -2232,26 +2227,21 @@ body {
     padding-right: 1.5rem;
   }
 
-  .sm\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+  .sm\:py-16 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .sm\:pt-10 {
     padding-top: 2.5rem;
   }
 
-  .sm\:pt-8 {
-    padding-top: 2rem;
+  .sm\:pt-7 {
+    padding-top: 1.75rem;
   }
 
   .sm\:text-left {
     text-align: left;
-  }
-
-  .sm\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 
   .sm\:text-\[10vw\] {
@@ -2262,11 +2252,20 @@ body {
     font-size: .875rem;
     line-height: 1.25rem;
   }
+
+  .sm\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
 }
 
 @media (min-width: 768px) {
-  .md\:mt-12 {
-    margin-top: 3rem;
+  .md\:mb-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  .md\:mb-8 {
+    margin-bottom: 2rem;
   }
 
   .md\:block {
@@ -2323,6 +2322,10 @@ body {
 
   .md\:pt-12 {
     padding-top: 3rem;
+  }
+
+  .md\:pt-8 {
+    padding-top: 2rem;
   }
 
   .md\:text-right {

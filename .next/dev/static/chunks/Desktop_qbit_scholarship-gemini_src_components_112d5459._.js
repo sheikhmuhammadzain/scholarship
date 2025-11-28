@@ -507,36 +507,40 @@ const Footer = ()=>{
         ref: container,
         className: "relative w-full",
         style: {
-            zIndex: 0
+            zIndex: 0,
+            minHeight: 'clamp(600px, 100vh, 900px)'
         },
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             ref: contentRef,
-            className: "relative w-full bg-slate-950 text-white flex flex-col justify-between px-4 sm:px-6 md:px-12 py-16 sm:py-20 md:py-24 min-h-screen md:min-h-auto",
+            className: "fixed bottom-0 left-0 w-full bg-slate-950 text-white flex flex-col justify-between px-4 sm:px-6 md:px-12 py-12 sm:py-16 md:py-24",
+            style: {
+                height: 'clamp(600px, 100vh, 900px)'
+            },
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     ref: bgText,
                     className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-5 select-none overflow-hidden",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-[8vw] sm:text-[10vw] md:text-[12vw] lg:text-[14vw] font-black tracking-tighter leading-none text-white whitespace-nowrap break-words",
+                        className: "text-[8vw] sm:text-[10vw] md:text-[12vw] lg:text-[14vw] font-black tracking-tighter leading-none text-white whitespace-nowrap px-4",
                         children: "GLOBAL STUDY ROAD"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                        lineNumber: 64,
+                        lineNumber: 65,
                         columnNumber: 17
                     }, ("TURBOPACK compile-time value", void 0))
                 }, void 0, false, {
                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                    lineNumber: 63,
+                    lineNumber: 64,
                     columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "relative z-10 max-w-[1400px] mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 md:gap-12 pt-8 sm:pt-10 md:pt-12",
+                    className: "relative z-10 max-w-[1400px] mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 md:gap-12 pt-8 sm:pt-10 md:pt-12 overflow-y-auto max-h-[calc(100%-120px)]",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "sm:col-span-2 lg:col-span-4 footer-col",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-xl sm:text-2xl font-bold tracking-tighter block mb-6 sm:mb-8",
+                                    className: "text-lg sm:text-xl md:text-2xl font-bold tracking-tighter block mb-4 sm:mb-6 md:mb-8",
                                     children: [
                                         "GlobalStudyRoad",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -544,21 +548,21 @@ const Footer = ()=>{
                                             children: "."
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                            lineNumber: 72,
+                                            lineNumber: 73,
                                             columnNumber: 36
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 71,
+                                    lineNumber: 72,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-slate-400 text-xs sm:text-sm leading-relaxed max-w-md mb-6 sm:mb-8",
+                                    className: "text-slate-400 text-xs sm:text-sm leading-relaxed max-w-md mb-4 sm:mb-6 md:mb-8",
                                     children: "An intelligent infrastructure for global education. We leverage advanced data processing to connect talent with opportunity."
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 74,
+                                    lineNumber: 75,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -566,24 +570,24 @@ const Footer = ()=>{
                                     children: "Trusted by 10,000+ students"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 77,
+                                    lineNumber: 78,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                            lineNumber: 70,
+                            lineNumber: 71,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "footer-col",
+                            className: "sm:col-span-1 lg:col-span-2 footer-col",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                    className: "font-bold text-slate-200 mb-4 sm:mb-6 text-xs uppercase tracking-wider",
+                                    className: "font-bold text-slate-200 mb-4 sm:mb-5 md:mb-6 text-xs uppercase tracking-wider",
                                     children: "Programs"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 82,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -597,29 +601,29 @@ const Footer = ()=>{
                                             children: item
                                         }, item, false, {
                                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                            lineNumber: 84,
+                                            lineNumber: 85,
                                             columnNumber: 25
                                         }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 82,
+                                    lineNumber: 83,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                            lineNumber: 80,
+                            lineNumber: 81,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "footer-col",
+                            className: "sm:col-span-1 lg:col-span-2 footer-col",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                    className: "font-bold text-slate-200 mb-4 sm:mb-6 text-xs uppercase tracking-wider",
+                                    className: "font-bold text-slate-200 mb-4 sm:mb-5 md:mb-6 text-xs uppercase tracking-wider",
                                     children: "Destinations"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 91,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -636,29 +640,29 @@ const Footer = ()=>{
                                             children: item
                                         }, item, false, {
                                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                            lineNumber: 93,
+                                            lineNumber: 94,
                                             columnNumber: 25
                                         }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 91,
+                                    lineNumber: 92,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                            lineNumber: 89,
+                            lineNumber: 90,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "footer-col",
+                            className: "sm:col-span-1 lg:col-span-2 footer-col",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                    className: "font-bold text-slate-200 mb-4 sm:mb-6 text-xs uppercase tracking-wider",
+                                    className: "font-bold text-slate-200 mb-4 sm:mb-5 md:mb-6 text-xs uppercase tracking-wider",
                                     children: "Support"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 99,
+                                    lineNumber: 100,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -671,29 +675,29 @@ const Footer = ()=>{
                                             children: item
                                         }, item, false, {
                                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                            lineNumber: 102,
+                                            lineNumber: 103,
                                             columnNumber: 25
                                         }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 100,
+                                    lineNumber: 101,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                            lineNumber: 98,
+                            lineNumber: 99,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "footer-col",
+                            className: "sm:col-span-1 lg:col-span-2 footer-col",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                    className: "font-bold text-slate-200 mb-4 sm:mb-6 text-xs uppercase tracking-wider",
+                                    className: "font-bold text-slate-200 mb-4 sm:mb-5 md:mb-6 text-xs uppercase tracking-wider",
                                     children: "Company"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 108,
+                                    lineNumber: 109,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -708,39 +712,39 @@ const Footer = ()=>{
                                             children: item
                                         }, item, false, {
                                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                            lineNumber: 111,
+                                            lineNumber: 112,
                                             columnNumber: 25
                                         }, ("TURBOPACK compile-time value", void 0)))
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 109,
+                                    lineNumber: 110,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                            lineNumber: 107,
+                            lineNumber: 108,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                    lineNumber: 69,
+                    lineNumber: 70,
                     columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0)),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "relative z-10 border-t border-slate-900 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 mt-8 sm:mt-10 md:mt-12 footer-col",
+                    className: "relative z-10 border-t border-slate-900 pt-6 sm:pt-7 md:pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 footer-col text-center sm:text-left",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-xs text-slate-500 font-mono text-center sm:text-left",
+                            className: "text-xs text-slate-500 font-mono",
                             children: "© 2025 GlobalStudyRoad. All rights reserved."
                         }, void 0, false, {
                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                            lineNumber: 118,
+                            lineNumber: 119,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0)),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-wrap gap-4 sm:gap-6 text-xs text-slate-500 font-mono justify-center sm:justify-end",
+                            className: "flex gap-4 sm:gap-6 text-xs text-slate-500 font-mono",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                     href: "#",
@@ -748,7 +752,7 @@ const Footer = ()=>{
                                     children: "Privacy Policy"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 122,
+                                    lineNumber: 123,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -757,19 +761,19 @@ const Footer = ()=>{
                                     children: "Terms of Service"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                                    lineNumber: 123,
+                                    lineNumber: 124,
                                     columnNumber: 21
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                            lineNumber: 121,
+                            lineNumber: 122,
                             columnNumber: 17
                         }, ("TURBOPACK compile-time value", void 0))
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/layout/Footer.tsx",
-                    lineNumber: 117,
+                    lineNumber: 118,
                     columnNumber: 13
                 }, ("TURBOPACK compile-time value", void 0))
             ]
@@ -4258,7 +4262,7 @@ const ExpertGuidance = ()=>{
                             className: "absolute inset-0 bg-slate-800",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                                 ref: imageRef,
-                                src: "https://plus.unsplash.com/premium_photo-1669704098858-8cd103f4ac2e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FyYWh8ZW58MHx8MHx8fDA%3D",
+                                src: "https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                                 alt: "Consultant",
                                 className: "w-full h-full object-cover opacity-60 mix-blend-overlay will-change-transform"
                             }, void 0, false, {
@@ -4276,7 +4280,7 @@ const ExpertGuidance = ()=>{
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$qbit$2f$scholarship$2d$gemini$2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-white font-bold text-lg",
-                                    children: "Dr. Sarah Mitchell"
+                                    children: "Dr.Mitchell"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/qbit/scholarship-gemini/src/components/sections/ContentSections.tsx",
                                     lineNumber: 209,
