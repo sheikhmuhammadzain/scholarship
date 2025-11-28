@@ -1,45 +1,66 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDownRight } from '@phosphor-icons/react';
+import { ArrowDownRight, Star } from '@phosphor-icons/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+// --- Components ---
+
 const ScrambleBadge = ({ text }: { text: string }) => {
   const [display, setDisplay] = useState(text);
-  const chars = "10101010";
+  const chars = "AX01!@#";
   
   const handleEnter = () => {
     let iteration = 0;
     const interval = setInterval(() => {
       setDisplay(prev => 
         text.split("").map((letter, index) => {
-          if(index < iteration) {
-            return text[index];
-          }
+          if(index < iteration) return text[index];
           return chars[Math.floor(Math.random() * chars.length)];
         }).join("")
       );
-      
       if(iteration >= text.length) {
         clearInterval(interval);
         setDisplay(text);
       }
-      
       iteration += 1 / 3;
     }, 30);
   };
   
   return (
-    <span onMouseEnter={handleEnter} className="cursor-default">{display}</span>
+    <span onMouseEnter={handleEnter} className="cursor-default inline-block">{display}</span>
   );
 };
 
+const RotatingBadge = () => (
+  <div className="absolute -top-12 -right-12 w-32 h-32 z-20 hidden md:flex items-center justify-center pointer-events-none mix-blend-difference">
+    <div className="relative w-full h-full animate-[spin_10s_linear_infinite]">
+       <svg viewBox="0 0 100 100" width="100%" height="100%">
+        <defs>
+          <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+        </defs>
+        <text fontSize="11" fontWeight="bold" fill="white">
+          <textPath xlinkHref="#circle" className="uppercase tracking-[0.2em]">
+            • Est 2025 • World Class Education
+          </textPath>
+        </text>
+      </svg>
+    </div>
+    <div className="absolute inset-0 flex items-center justify-center">
+        <ArrowDownRight size={24} className="text-white transform -rotate-45" />
+    </div>
+  </div>
+);
+
+// --- Main Hero ---
+
 export const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const searchBtnRef = useRef<HTMLButtonElement>(null);
+  const floatingCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -47,23 +68,39 @@ export const Hero: React.FC = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
 
+      // Text Animations
       tl.from(".hero-line-inner", {
         yPercent: 100,
-        duration: 1.8,
-        stagger: 0.2,
-        ease: "power3.out",
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "power4.out",
         delay: 0.2 
       });
 
-      tl.from(imageContainerRef.current, {
-        scale: 0.9,
-        opacity: 0,
-        duration: 2.2,
-        ease: "power2.out"
-      }, "-=1.5");
+      // Advanced Image Reveal (Clip Path)
+      tl.fromTo(imageWrapperRef.current, 
+        { clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)", scale: 1.1 },
+        { 
+          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", 
+          scale: 1,
+          duration: 1.8,
+          ease: "expo.inOut" 
+        }, 
+        "-=1.0"
+      );
 
+      // Reveal Floating Card
+      tl.from(floatingCardRef.current, {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      }, "-=0.8");
+
+      // Scroll Parallax for Image
       gsap.to(imageRef.current, {
-        yPercent: 20,
+        yPercent: 15,
+        scale: 1.1, // Slight zoom on scroll
         ease: "none",
         scrollTrigger: {
             trigger: containerRef.current,
@@ -73,6 +110,7 @@ export const Hero: React.FC = () => {
         }
       });
 
+      // Button Magnetic Effect
       const btn = searchBtnRef.current;
       if(btn) {
           btn.addEventListener("mousemove", (e) => {
@@ -91,14 +129,57 @@ export const Hero: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
+  // Mouse Move Parallax Logic
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!imageWrapperRef.current || !floatingCardRef.current) return;
+    
+    const { clientX, clientY } = e;
+    const xPos = (clientX / window.innerWidth - 0.5);
+    const yPos = (clientY / window.innerHeight - 0.5);
+
+    // Move Image Wrapper (Base)
+    gsap.to(imageWrapperRef.current, {
+        x: xPos * 20,
+        y: yPos * 20,
+        rotationY: xPos * 5,
+        rotationX: -yPos * 5,
+        duration: 1,
+        ease: "power2.out"
+    });
+
+    // Move Floating Card (Opposite/Deeper for 3D effect)
+    gsap.to(floatingCardRef.current, {
+        x: xPos * -40,
+        y: yPos * -40,
+        duration: 1.2,
+        ease: "power2.out"
+    });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to([imageWrapperRef.current, floatingCardRef.current], {
+        x: 0,
+        y: 0,
+        rotationY: 0,
+        rotationX: 0,
+        duration: 1,
+        ease: "power2.out"
+    });
+  };
+
   return (
     <section ref={containerRef} className="relative pt-32 min-h-screen flex flex-col bg-white overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 h-full flex-grow pb-12 relative z-10">
+        
+        {/* Left Text Content */}
         <div className="lg:col-span-7 flex flex-col justify-center z-10">
-            <div className="overflow-hidden mb-2">
+            <div className="overflow-hidden mb-4">
                 <div className="hero-line-inner flex items-center gap-3">
-                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span className="text-sm font-mono text-slate-500 uppercase tracking-widest">
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span className="text-sm font-mono text-slate-500 uppercase tracking-widest border border-slate-200 px-3 py-1 rounded-full">
                         <ScrambleBadge text="Admissions 2025 Open" />
                     </span>
                 </div>
@@ -115,10 +196,52 @@ export const Hero: React.FC = () => {
                 </div>
             </div>
         </div>
-        <div className="lg:col-span-5 relative h-[60vh] lg:h-auto lg:min-h-[800px] flex flex-col justify-end pb-12">
-            <div ref={imageContainerRef} className="relative w-full h-full overflow-hidden bg-slate-100">
-                <img ref={imageRef} src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1600&q=100" alt="University Architecture" className="absolute top-[-20%] left-0 w-full h-[140%] object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out" />
+
+        {/* Right Image Content - The Awwwards Part */}
+        <div 
+            className="lg:col-span-5 relative min-h-[500px] lg:h-auto flex flex-col justify-center items-center lg:items-end perspective-[1000px]"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+        >
+            {/* The Main Visual Wrapper */}
+            <div 
+                ref={imageWrapperRef} 
+                className="relative w-[90%] md:w-full h-[60vh] lg:h-[75vh] overflow-hidden rounded-[2rem] will-change-transform"
+                style={{ transformStyle: 'preserve-3d' }}
+            >
+                {/* Rotating SVG Badge */}
+                <RotatingBadge />
+
+                {/* Main Image */}
+                <div className="absolute inset-0 bg-slate-900">
+                    <img 
+                        ref={imageRef} 
+                        src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1600&q=100" 
+                        alt="University Architecture" 
+                        className="w-full h-[120%] object-cover opacity-90 transition-all duration-700 ease-out hover:scale-105" 
+                    />
+                </div>
+
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
             </div>
+
+            {/* Floating Glass Card (Depth Layer) */}
+            <div 
+                ref={floatingCardRef}
+                className="absolute bottom-[10%] -left-[5%] md:-left-[10%] bg-black/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl  z-30 max-w-[240px]"
+            >
+                <div className="flex items-center gap-2 mb-2 text-yellow-400">
+                    <Star weight="fill" />
+                    <Star weight="fill" />
+                    <Star weight="fill" />
+                    <Star weight="fill" />
+                    <Star weight="fill" />
+                </div>
+                <h3 className="text-white text-2xl font-bold mb-1">98%</h3>
+                <p className="text-white/80 text-sm leading-tight">Graduates employed within 6 months of completion.</p>
+            </div>
+
         </div>
       </div>
     </section>
