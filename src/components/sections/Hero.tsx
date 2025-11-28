@@ -206,7 +206,7 @@ export const Hero: React.FC = () => {
             {/* The Main Visual Wrapper */}
             <div 
                 ref={imageWrapperRef} 
-                className="relative w-[90%] md:w-full h-[60vh] lg:h-[75vh] overflow-hidden rounded-[2rem] will-change-transform"
+                className="relative w-[90%] md:w-full h-[60vh] lg:h-[75vh] overflow-hidden  will-change-transform rounded-[0.5rem]"
                 style={{ transformStyle: 'preserve-3d' }}
             >
                 {/* Rotating SVG Badge */}
@@ -218,7 +218,7 @@ export const Hero: React.FC = () => {
                         ref={imageRef} 
                         src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1600&q=100" 
                         alt="University Architecture" 
-                        className="w-full h-[120%] object-cover opacity-90 transition-all duration-700 ease-out hover:scale-105" 
+                        className="w-full h-[120%] object-cover opacity-90 transition-all duration-700 ease-out  hover:scale-105" 
                     />
                 </div>
 
@@ -229,7 +229,7 @@ export const Hero: React.FC = () => {
             {/* Floating Glass Card (Depth Layer) */}
             <div 
                 ref={floatingCardRef}
-                className="absolute bottom-[10%] -left-[5%] md:-left-[10%] bg-black/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl  z-30 max-w-[240px]"
+                className="absolute bottom-[10%] -left-[5%] md:-left-[10%] bg-black/10 rounded-lg backdrop-blur-xl border border-white/20 p-6  z-30 max-w-[240px]"
             >
                 <div className="flex items-center gap-2 mb-2 text-yellow-400">
                     <Star weight="fill" />
