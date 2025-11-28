@@ -82,12 +82,12 @@ export const Destinations = () => {
 
                 <div className="destination-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-slate-200 bg-white">
                     {[
-                        { country: "United States", img: "https://images.unsplash.com/photo-1548625361-98770775a7c7?auto=format&fit=crop&w=800&q=80" },
+                        { country: "United States", img: "https://plus.unsplash.com/premium_photo-1681803531285-75db948035d3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNhfGVufDB8fDB8fHww" },
                         { country: "United Kingdom", img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80" },
                         { country: "Canada", img: "https://images.unsplash.com/photo-1517935706615-2717063c2225?auto=format&fit=crop&w=800&q=80" },
-                        { country: "Australia", img: "https://images.unsplash.com/photo-1523482580614-b7d8d40d425d?auto=format&fit=crop&w=800&q=80" },
-                        { country: "Germany", img: "https://images.unsplash.com/photo-1467269204594-9661b133dd2e?auto=format&fit=crop&w=800&q=80" },
-                        { country: "Japan", img: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80" },
+                        { country: "Australia", img: "https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXVzdHJhbGlhfGVufDB8fDB8fHww" },
+                        { country: "Germany", img: "https://plus.unsplash.com/premium_photo-1661962435210-e6cdbb2cbeb4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z2VybWFueXxlbnwwfHwwfHx8MA%3D%3D" },
+                        { country: "Japan", img: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8amFwYW58ZW58MHx8MHx8fDA%3D" },
                     ].map((dest, i) => (
                         <div key={i} className="destination-card group relative h-[450px] border-r border-b border-slate-200 overflow-hidden cursor-pointer">
                             <div className="absolute inset-0 overflow-hidden">
@@ -119,10 +119,12 @@ export const Destinations = () => {
 // --- Expert Guidance ---
 export const ExpertGuidance = () => {
     const sectionRef = useRef(null);
+    const imageRef = useRef(null);
 
     useEffect(() => {
         if (!window.gsap) return;
         const ctx = window.gsap.context(() => {
+            // Text Stagger Entrance
             window.gsap.from(".guidance-item", {
                 x: -50,
                 opacity: 0,
@@ -135,24 +137,43 @@ export const ExpertGuidance = () => {
                 }
             });
             
-            // Image reveal
-            window.gsap.from(".guidance-image", {
-                scale: 1.2,
+            // Image Container Entrance
+            window.gsap.from(".guidance-image-container", {
                 opacity: 0,
-                duration: 2.0,
+                y: 50,
+                duration: 1.5,
                 ease: "power2.out",
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: "top 60%"
                 }
             });
+
+            // Parallax Effect
+            window.gsap.fromTo(imageRef.current, 
+                { 
+                    yPercent: -15, 
+                    scale: 1.3 
+                },
+                {
+                    yPercent: 15,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 0
+                    }
+                }
+            );
+
         }, sectionRef);
         return () => ctx.revert();
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-32 bg-slate-900 text-white">
-             <div className="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-24">
+        <section ref={sectionRef} className="py-32 bg-slate-900 text-white overflow-hidden">
+             <div className="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-24 relative z-10">
                  <div>
                      <div className="w-12 h-1 bg-white mb-8"></div>
                      <div className="overflow-hidden mb-8">
@@ -184,15 +205,16 @@ export const ExpertGuidance = () => {
                      </div>
                  </div>
                  
-                 <div className="relative h-full min-h-[500px] overflow-hidden">
-                     <div className="absolute inset-0 bg-slate-800 guidance-image">
+                 <div className="relative h-full min-h-[500px] overflow-hidden rounded-lg guidance-image-container">
+                     <div className="absolute inset-0 bg-slate-800">
                         <img 
-                            src="https://images.unsplash.com/photo-1573166368361-3f52b6d96e90?auto=format&fit=crop&w=800&q=80" 
+                            ref={imageRef}
+                            src="https://plus.unsplash.com/premium_photo-1669704098858-8cd103f4ac2e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FyYWh8ZW58MHx8MHx8fDA%3D" 
                             alt="Consultant" 
-                            className="w-full h-full object-cover opacity-60 mix-blend-overlay"
+                            className="w-full h-full object-cover opacity-60 mix-blend-overlay will-change-transform"
                         />
                      </div>
-                     <div className="absolute bottom-0 left-0 p-8 w-full border-t border-white/10 bg-slate-900/50 backdrop-blur-sm">
+                     <div className="absolute bottom-0 left-0 p-8 w-full border-t border-white/10 bg-slate-900/50 backdrop-blur-sm z-20">
                          <div className="text-white font-bold text-lg">Dr. Sarah Mitchell</div>
                          <div className="text-slate-400 text-sm uppercase tracking-wider mt-1">Lead Strategist</div>
                      </div>
