@@ -1,3 +1,4 @@
+
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Hero } from '@/components/sections/Hero';
@@ -10,7 +11,13 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="flex-grow">
+      {/* 
+        Main content wrapper:
+        - relative z-10: Sits ON TOP of the fixed footer (z-0).
+        - bg-[var(--background)]: Opaque background to hide footer until scrolled.
+        - shadow-2xl: Adds depth between the "floor" (footer) and the "curtain" (main content).
+      */}
+      <main className="relative z-10 bg-[var(--background)] shadow-2xl rounded-b-[3rem]"> 
         <Hero />
         <StatsDashboard />
         <AIFeatures />
