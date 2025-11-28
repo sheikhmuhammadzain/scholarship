@@ -13,7 +13,8 @@ import {
   PenNib,
   Layout,
   CaretDown,
-  Cpu
+  Cpu,
+  Sparkle
 } from '@phosphor-icons/react';
 
 // --- Stats Dashboard ---
@@ -179,21 +180,42 @@ export const FeatureDeepDive = () => {
              const tl = window.gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
              
              // Initial State
-             tl.set(".type-line", { width: "0%" });
+             tl.set(".prompt-text", { width: "0%" });
+             tl.set(".generate-btn", { scale: 1 });
+             tl.set(".type-line", { width: "0%", backgroundColor: "#e2e8f0" });
+             tl.set(".optimization-badge", { scale: 0, opacity: 0 });
              
-             // Typing sequence
+             // 1. Type Prompt
+             tl.to(".prompt-text", { width: "70%", duration: 0.6, ease: "power2.out" });
+             
+             // 2. Click Generate
+             tl.to(".generate-btn", { scale: 0.9, duration: 0.1, yoyo: true, repeat: 1 });
+             
+             // 3. Typing sequence
              const lines = window.gsap.utils.toArray(".type-line");
              lines.forEach((line: any) => {
                  tl.to(line, {
                      width: line.dataset.width,
-                     duration: 0.4,
-                     ease: "none" // Linear for typing feel
+                     duration: 0.2, // fast typing
+                     ease: "none"
                  });
-                 // Small pause between paragraphs
-                 if(line.classList.contains("mb-4")) {
-                     tl.to({}, { duration: 0.2 });
-                 }
              });
+
+             // 4. Optimization Highlight
+             tl.to(".type-line", { 
+                backgroundColor: "#dbeafe", // blue-100
+                duration: 0.3,
+                stagger: 0.05 
+             });
+             tl.to(".type-line", { 
+                backgroundColor: "#e2e8f0", 
+                duration: 0.5 
+             }, "+=0.2");
+
+             // 5. Badge Pop
+             tl.to(".optimization-badge", { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.7)" }, "-=0.3");
+
+             // Reset delay handled by repeatDelay
 
         }, writingRef);
 
@@ -315,29 +337,40 @@ export const FeatureDeepDive = () => {
 
                             {/* Visual Side */}
                             <div ref={writingRef} className="relative bg-slate-50 overflow-hidden flex items-center justify-center p-12">
-                                {/* Simple light bg */}
-                                <div className="absolute inset-0 bg-slate-50"></div>
+                                {/* Dot Grid Bg */}
+                                <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
 
                                 {/* Floating Paper */}
-                                <div className="relative w-full max-w-[360px] bg-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-100 p-8 rounded-lg transform rotate-2 hover:rotate-0 transition-transform duration-700">
+                                <div className="relative w-full max-w-[380px] bg-white shadow-xl border border-slate-100 p-8 rounded-xl transform hover:rotate-0 transition-transform duration-700 z-10">
                                     
                                     {/* Mock Input Header */}
-                                    <div className="mb-8">
-                                        <div className="h-8 w-32 bg-slate-100 rounded mb-2 animate-pulse"></div>
-                                        <div className="h-px w-full bg-slate-100"></div>
+                                    <div className="flex gap-2 mb-6 border-b border-slate-100 pb-6">
+                                        <div className="flex-grow bg-slate-50 rounded-md h-10 p-2 flex items-center">
+                                            <div className="h-1.5 bg-slate-400 rounded-full prompt-text"></div>
+                                        </div>
+                                        <div className="w-10 h-10 bg-purple-600 rounded-md flex items-center justify-center text-white generate-btn shadow-lg shadow-purple-200 cursor-pointer">
+                                            <Sparkle weight="fill" />
+                                        </div>
                                     </div>
 
-                                    {/* Typing Lines */}
-                                    <div className="space-y-3">
+                                    {/* Generated Content */}
+                                    <div className="space-y-3 relative">
                                         <div className="h-2 bg-slate-200 rounded-full type-line" data-width="100%"></div>
                                         <div className="h-2 bg-slate-200 rounded-full type-line" data-width="95%"></div>
-                                        <div className="h-2 bg-slate-200 rounded-full type-line mb-4" data-width="80%"></div>
+                                        <div className="h-2 bg-slate-200 rounded-full type-line" data-width="98%"></div>
+                                        <div className="h-2 bg-slate-200 rounded-full type-line mb-4" data-width="60%"></div>
                                         
                                         <div className="h-2 bg-slate-200 rounded-full type-line" data-width="100%"></div>
-                                        <div className="h-2 bg-slate-200 rounded-full type-line" data-width="90%"></div>
+                                        <div className="h-2 bg-slate-200 rounded-full type-line" data-width="85%"></div>
+                                        <div className="h-2 bg-slate-200 rounded-full type-line" data-width="92%"></div>
                                         <div className="h-2 bg-slate-200 rounded-full type-line" data-width="40%"></div>
+                                    
+                                        {/* Badge Overlay */}
+                                        <div className="optimization-badge absolute -right-4 top-10 bg-white border border-purple-100 shadow-xl px-3 py-2 rounded-lg flex items-center gap-2 z-20">
+                                            <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></div>
+                                            <span className="text-[10px] font-bold text-slate-600 uppercase tracking-wide">Tone: Persuasive</span>
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
